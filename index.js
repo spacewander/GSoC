@@ -10,7 +10,7 @@ var yargs = require('yargs')
             .example("$0 2014 -n Rails -t web", "search with project name and specific tag in given year");
 
 var argv = yargs.argv;
-var GSoC = require('./GSoC.js');
+var GSoC = require('./lib/GSoC.js');
 
 if (argv.h) {
   yargs.showHelp();
