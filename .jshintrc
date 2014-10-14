@@ -1,0 +1,14 @@
+{
+  "unused": false,
+  "multistr":true,
+  "globals": {
+    "process": false,
+    "$": false,
+    "jQuery": false,
+    "document": false,
+    "require": false,
+    "__dirname": false,
+    "module": false,
+    "exports": false
+  }
+}

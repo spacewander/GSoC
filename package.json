@@ -1,0 +1,19 @@
+{
+  "name": "GSoC",
+  "version": "0.0.0",
+  "description": "The commandline tool which helps you filter projects in Google Summer of Code",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "GSoc",
+    "Google Summer of Code",
+    "commandline"
+  ],
+  "author": "spacewander",
+  "license": "GPL",
+  "dependencies": {
+    "yargs": "~1.3.2"
+  }
+}
