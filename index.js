@@ -1,7 +1,6 @@
 #! /usr/bin/env node
 
 var yargs = require('yargs')
-            .string(['t', 'n'])
             .usage("$0 init \n$0 year [-t tag | -n projectName]")
             .example("$0 init",  "download the project data of GSoC")
             .example("$0 2014", "list projects of specific year")
@@ -22,21 +21,66 @@ if (argv._[0] === 'init') {
   return 0;
 }
 
+var isString = function(item) {
+  return item && typeof(item) === typeof('');
+};
+
+var isArray = function(item) {
+  return item && typeof(item) === typeof([]);
+};
+
 var year = Number(argv._[0]);
-var currentYear = (new Date()).getFullYear();
-if (!year || year < 2009 || year > currentYear) {
-  year = currentYear;
+var splits;
+if (!year) {
+  if (argv._.length) {
+    splits = argv._[0].split('-');
+    if (splits.length === 2) {
+      year = splits;
+    }
+  }
 }
 
-if (argv.t && argv.n) {
-  GSoC.searchProjectsWithTags(year, argv.n, argv.t);
-}
-else if (argv.t) {
-  GSoC.searchTags(year, argv.t);
-}
-else if (argv.n) {
-  GSoC.searchProjects(year, argv.n);
+var currentYear = (new Date()).getFullYear();
+var fallbackToCurrentYear = function(year) {
+  if (!year || year < 2009 || year > currentYear) {
+    return currentYear;
+  }
+  return year;
+};
+
+if (isArray(year)) {
+  year[0] = fallbackToCurrentYear(Number(year[0]));
+  year[1] = fallbackToCurrentYear(Number(year[1]));
+  if (year[1] < year[0]) {
+    var tmp = year[1];
+    year[1] = year[0];
+    year[0] = tmp;
+  }
 }
 else {
-  GSoC.getProjectsList(year);
+  year = fallbackToCurrentYear(year);
 }
+
+if (argv.t && !isArray(argv.t)) {
+  argv.t = [].push(argv.t);
+}
+
+var printProjects = function(projects) {
+  for (var key in projects) {
+    console.log(key + "\t\t\t\t: " + projects[key]);
+  }
+};
+
+if (argv.t && isString(argv.n)) {
+  GSoC.searchProjectsWithTags(year, argv.n, argv.t, printProjects);
+}
+else if (argv.t) {
+  GSoC.searchTags(year, argv.t, printProjects);
+}
+else if (isString(argv.n)) {
+  GSoC.searchProjects(year, argv.n, printProjects);
+}
+else {
+  GSoC.getProjectsList(year, printProjects);
+}
+
