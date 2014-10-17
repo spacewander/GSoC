@@ -3,6 +3,7 @@ var fs = require('fs');
 var path = require('path');
 
 var searchProjects = require('../lib/GSoC.js').searchProjects;
+var searchProjectsWithTags = require('../lib/GSoC.js').searchProjectsWithTags;
 var getProjectsList = require('../lib/GSoC.js').getProjectsList;
 var searchTags = require('../lib/GSoC.js').searchTags;
 
@@ -126,4 +127,21 @@ describe('search functions: ', function(){
     });
 
   });
+
+  describe('search projec with tags ', function(){
+    
+    it('with 2014, S, [ruby]', function(){
+      searchProjectsWithTags(2014, 'c', ['ruby'], function(res){
+        res.should.have.property('SciRuby');
+        res.should.not.have.property('Rails');
+      });
+    });
+
+    it('with 2014, R, [ruby]', function(){
+      searchProjectsWithTags(2014, 'R', ['ruby'], function(res){
+        res.should.have.property('SciRuby');
+        res.should.have.property('Rails');
+      });
+    });
+  });   
 });
