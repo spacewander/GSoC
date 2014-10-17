@@ -1,6 +1,6 @@
 {
   "name": "GSoC",
-  "version": "0.0.0",
+  "version": "0.3.0",
   "description": "The commandline tool which helps you filter projects in Google Summer of Code",
   "main": "index.js",
   "scripts": {
@@ -14,7 +14,8 @@
   "author": "spacewander",
   "license": "GPL",
   "dependencies": {
-    "yargs": "~1.3.2"
+    "yargs": "~1.3.2",
+    "lodash": "~2.4.1"
   },
   "devDependencies": {
     "gulp": "~3.8.8",

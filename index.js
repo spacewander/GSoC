@@ -62,7 +62,7 @@ else {
 }
 
 if (argv.t && !isArray(argv.t)) {
-  argv.t = [].push(argv.t);
+  argv.t = new Array(argv.t);
 }
 
 var printProjects = function(projects) {
