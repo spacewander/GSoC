@@ -1,3 +1,4 @@
+// test the search methods
 var should = require('chai').should();
 var fs = require('fs');
 var path = require('path');
@@ -128,7 +129,7 @@ describe('search functions: ', function(){
 
   });
 
-  describe('search projec with tags ', function(){
+  describe('search project with tags ', function(){
     
     it('with 2014, S, [ruby]', function(){
       searchProjectsWithTags(2014, 'c', ['ruby'], function(res){
@@ -141,6 +142,13 @@ describe('search functions: ', function(){
       searchProjectsWithTags(2014, 'R', ['ruby'], function(res){
         res.should.have.property('SciRuby');
         res.should.have.property('Rails');
+      });
+    });
+
+    it('with 2010, de, [c, java]', function(){
+      searchProjectsWithTags(2010, 'de', ['c', 'java'], function(res){
+        res.should.have.property('Debian Project');
+        res.should.not.have.property('Blender Foudation');
       });
     });
   });   

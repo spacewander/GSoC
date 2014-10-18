@@ -10,6 +10,7 @@ var yargs = require('yargs')
 
 var argv = yargs.argv;
 var GSoC = require('./lib/GSoC.js');
+var printProjects = require('./lib/print.js').printProjects;
 
 if (argv.h) {
   yargs.showHelp();
@@ -64,17 +65,6 @@ else {
 if (argv.t && !isArray(argv.t)) {
   argv.t = new Array(argv.t);
 }
-
-// print the result with given projects
-var printProjects = function(projects) {
-  // if projects is empty
-  if (!Object.keys(projects).length) {
-    return console.log('Not result found.');
-  }
-  for (var key in projects) {
-    console.log(key + "\t\t\t\t: " + projects[key]);
-  }
-};
 
 if (argv.t && isString(argv.n)) {
   GSoC.searchProjectsWithTags(year, argv.n, argv.t, printProjects);
