@@ -15,7 +15,7 @@ describe('commandline options: ', function(){
 
   describe('List projects ', function(){
     it('GSoC', function(){
-      exec(script, {silent: true}).output.should.equal('\u001b[33mRails\u001b[39m\u001b[36m\n\t: ruby\u001b[39m\n\u001b[33mSciRuby\u001b[39m\u001b[36m\n\t: ruby\u001b[39m\n');
+      exec(script, {silent: true}).output.should.equal('\u001b[33mRails\u001b[39m\u001b[36m\n\t: ruby\u001b[39m\n\u001b[33mSciRuby\u001b[39m\u001b[36m\n\t: Ruby\u001b[39m\n');
     });
 
     it('GSoC 2013', function(){
@@ -29,7 +29,7 @@ describe('commandline options: ', function(){
 
   describe('list with tags ', function(){
     it('GSoC -t ruby', function(){
-      exec(script + ' -t ruby', {silent: true}).output.should.equal('\u001b[33mRails\u001b[39m\u001b[36m\n\t: ruby\u001b[39m\n\u001b[33mSciRuby\u001b[39m\u001b[36m\n\t: ruby\u001b[39m\n');
+      exec(script + ' -t ruby', {silent: true}).output.should.equal('\u001b[33mRails\u001b[39m\u001b[36m\n\t: ruby\u001b[39m\n\u001b[33mSciRuby\u001b[39m\u001b[36m\n\t: Ruby\u001b[39m\n');
     });
 
     it('GSoC -t ruby -t web', function(){
@@ -39,7 +39,7 @@ describe('commandline options: ', function(){
 
   describe('list with name ', function(){
     it('GSoC -n R', function(){
-      exec(script + ' -n R', {silent: true}).output.should.equal('\u001b[33mRails\u001b[39m\u001b[36m\n\t: ruby\u001b[39m\n\u001b[33mSciRuby\u001b[39m\u001b[36m\n\t: ruby\u001b[39m\n');
+      exec(script + ' -n R', {silent: true}).output.should.equal('\u001b[33mRails\u001b[39m\u001b[36m\n\t: ruby\u001b[39m\n\u001b[33mSciRuby\u001b[39m\u001b[36m\n\t: Ruby\u001b[39m\n');
     });
 
     it('GSoC 2009-2012 -n a', function(){
@@ -49,7 +49,7 @@ describe('commandline options: ', function(){
 
   describe('list with both tags and name', function(){
     it('GSoC 2014 -n c -t ruby', function(){
-      exec(script + ' -n c -t ruby', {silent: true}).output.should.equal('\u001b[33mSciRuby\u001b[39m\u001b[36m\n\t: ruby\u001b[39m\n');
+      exec(script + ' -n c -t ruby', {silent: true}).output.should.equal('\u001b[33mSciRuby\u001b[39m\u001b[36m\n\t: Ruby\u001b[39m\n');
     });
 
     it('GSoC 2010 -n de -t c -t java', function(){

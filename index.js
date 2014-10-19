@@ -62,8 +62,15 @@ else {
   year = fallbackToCurrentYear(year);
 }
 
-if (argv.t && !isArray(argv.t)) {
-  argv.t = new Array(argv.t);
+if (argv.t) {
+  if (!isArray(argv.t)) {
+    argv.t = new Array(argv.t);
+  }
+
+  // convert all tags to lowercase
+  argv.t.map(function(cur, i, ary){
+    ary[i] = ary[i].toLowerCase();
+  });
 }
 
 if (argv.t && isString(argv.n)) {

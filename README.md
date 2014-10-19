@@ -1,7 +1,3 @@
-## warning
-
-This project has not been finished yet.
-
 ## description
 
 **GSoC** is a commandline tool which helps you search/filter projects in [Google Summer of Code](https://www.google-melange.com/gsoc/homepage/google/gsoc2015)
@@ -29,3 +25,7 @@ This project has not been finished yet.
 ## license
 
 GPL
+
+## feedback
+
+Any feedback about bugs or improvement is welcome!
