@@ -1,10 +1,13 @@
 {
-  "name": "GSoC",
+  "name": "gsoc",
   "version": "0.7.0",
   "description": "The commandline tool which helps you filter projects in Google Summer of Code",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "gulp test"
+  },
+  "bin": {
+    "GSoC": "./index.js"
   },
   "keywords": [
     "GSoc",
@@ -12,6 +15,10 @@
     "commandline"
   ],
   "author": "spacewander",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/spacewander/GSoC.git"
+  },
   "license": "GPL",
   "dependencies": {
     "yargs": "~1.3.2",
