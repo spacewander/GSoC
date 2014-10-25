@@ -1,3 +1,9 @@
+## installation
+
+    $ sudo npm install -g gsoc
+
+It will be installed into /usr/bin. Then you can run it with `GSoc ...`
+
 ## description
 
 **GSoC** is a commandline tool which helps you search/filter projects in [Google Summer of Code](https://www.google-melange.com/gsoc/homepage/google/gsoc2015)
