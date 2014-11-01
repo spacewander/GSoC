@@ -1,6 +1,7 @@
 #! /usr/bin/env node
 
 var yargs = require('yargs')
+            .string('n')
             .usage("$0 init \n$0 year [-t tag | -n projectName]")
             .example("$0 init",  "download the project data of GSoC")
             .example("$0 2014", "list projects of specific year")
@@ -22,10 +23,7 @@ if (argv._[0] === 'init') {
   return 0;
 }
 
-var isString = function(item) {
-  return item && typeof(item) === typeof('');
-};
-
+// yargs does not offer feature like 'check if options is Array'
 var isArray = function(item) {
   return item && typeof(item) === typeof([]);
 };
@@ -73,13 +71,13 @@ if (argv.t) {
   });
 }
 
-if (argv.t && isString(argv.n)) {
+if (argv.t && argv.n) {
   GSoC.searchProjectsWithTags(year, argv.n, argv.t, printProjects);
 }
 else if (argv.t) {
   GSoC.searchTags(year, argv.t, printProjects);
 }
-else if (isString(argv.n)) {
+else if (argv.n) {
   GSoC.searchProjects(year, argv.n, printProjects);
 }
 else {

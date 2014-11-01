@@ -15,7 +15,7 @@ describe('commandline options: ', function(){
 
   describe('List projects ', function(){
     it('GSoC', function(){
-      exec(script, {silent: true}).output.should.equal('\u001b[33mRails\u001b[39m\u001b[36m\n\t: ruby\u001b[39m\n\u001b[33mSciRuby\u001b[39m\u001b[36m\n\t: Ruby\u001b[39m\n');
+      exec(script, {silent: true}).output.should.equal('\u001b[33mRails\u001b[39m\u001b[36m\n\t: ruby\u001b[39m\n\u001b[33mSciRuby\u001b[39m\u001b[36m\n\t: Ruby\u001b[39m\n\u001b[33mPlan 9\u001b[39m\u001b[36m\n\t: C\u001b[39m\n');
     });
 
     it('GSoC 2013', function(){
@@ -38,6 +38,10 @@ describe('commandline options: ', function(){
   });
 
   describe('list with name ', function(){
+    it('GSoC -n 9', function(){
+      exec(script + ' -n 9', {silent: true}).output.should.equal('\u001b[33mPlan 9\u001b[39m\u001b[36m\n\t: C\u001b[39m\n');
+    });
+
     it('GSoC -n R', function(){
       exec(script + ' -n R', {silent: true}).output.should.equal('\u001b[33mRails\u001b[39m\u001b[36m\n\t: ruby\u001b[39m\n\u001b[33mSciRuby\u001b[39m\u001b[36m\n\t: Ruby\u001b[39m\n');
     });
