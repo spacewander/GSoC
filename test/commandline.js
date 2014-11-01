@@ -2,6 +2,7 @@
 var should = require('chai').should();
 var fs = require('fs');
 var path = require('path');
+
 require('shelljs/global');
 
 var script = './index.js';
@@ -11,6 +12,16 @@ describe('commandline options: ', function(){
     var file = path.resolve(process.cwd() + '/test/fixtures/GSoCProjects.json');
     var newFile = path.resolve(process.cwd() + '/GSoCProjects.json');
     fs.createReadStream(file).pipe(fs.createWriteStream(newFile));
+  });
+
+  describe('restrict the options ', function(){
+    it('should be only given -t or -h or -n', function(){
+      exec(script + ' -x', {silent: true}).output.should.contain('Example');
+    });
+
+    it('should be only given a non-hypenated option', function(){
+      exec(script + ' 2013 2014', {silent: true}).output.should.contain('Example');
+    });
   });
 
   describe('List projects ', function(){
@@ -34,6 +45,10 @@ describe('commandline options: ', function(){
 
     it('GSoC -t ruby -t web', function(){
       exec(script + ' -t ruby -t web', {silent: true}).output.should.equal('\u001b[31mNot result found.\u001b[39m\n');
+    });
+
+    it('GSoC -t 12', function(){
+      exec(script + ' -t 12', {silent: true}).output.should.equal('\u001b[31mNot result found.\u001b[39m\n');
     });
   });
 

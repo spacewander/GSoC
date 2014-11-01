@@ -9,11 +9,15 @@ var yargs = require('yargs')
             .example("$0 2014 -n Rails", "search with project name in given year")
             .example("$0 2014 -n Rails -t web", "search with project name and specific tag in given year");
 
+var _ = require('lodash');
+
 var argv = yargs.argv;
 var GSoC = require('./lib/GSoC.js');
 var printProjects = require('./lib/print.js').printProjects;
 
-if (argv.h) {
+if (argv.h || argv._.length > 1 || 
+ // filter with whitelist
+  _.difference(Object.keys(argv), ['$0', 'h', 'n', 't', '_']).length) {
   yargs.showHelp();
   return 0;
 }
@@ -62,7 +66,10 @@ else {
 
 if (argv.t) {
   if (!isArray(argv.t)) {
-    argv.t = new Array(argv.t);
+    if (typeof(argv.t) === typeof(1)) {
+      argv.t = argv.t.toString();
+    }
+    argv.t = [argv.t];
   }
 
   // convert all tags to lowercase
@@ -83,4 +90,3 @@ else if (argv.n) {
 else {
   GSoC.getProjectsList(year, printProjects);
 }
-
